@@ -12,6 +12,10 @@ var cookie = {
         document.cookie = name + "=" + value + expires + "; path=/";
     },
 
+    createGameModeCookie(mode) {
+        cookie.createCookie("CandyCookie", mode, 365);
+    },
+
     readCookie : function(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
@@ -123,7 +127,7 @@ var cookie = {
             ":" + wishingWell.step +
             ":" + getPhpStuff(yourself.canSurpass) +
             ":" + darkMode.setting +
-            ":" + "normal" +
+            ":" + gameMode.setting +
             ":" + getPhpStuff(developperComputer.won);
 
     },
@@ -134,6 +138,11 @@ var cookie = {
 
         var payload = cookie.readCookie("CandyCookie");
         var_list = payload.split(":");
+
+        if(var_list.length == 1 && var_list[0] !== "") {
+            gameMode.setMode(var_list[0]);
+            return null;
+        }
 
         if(var_list.length != 92)
         {
@@ -287,6 +296,7 @@ var cookie = {
         //
 
         darkMode.setMode(var_list[89]);
+        gameMode.setMode(var_list[90]);
 
         developperComputer.setWon(setPhpStuff(setPhpStuff(Number(var_list[91]))));
 

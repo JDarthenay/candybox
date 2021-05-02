@@ -125,7 +125,11 @@ var quest = {
     },
     
     getCharacterMaxHp : function(){
-        return 100 + Math.floor(Math.pow(candies.nbrEaten, 0.4)*2.1); // This function means ~ one day of candies eaten at 1cnd/s = +200 hp
+        if (gameMode.setting === "hard mode") {
+            return 100;
+        } else {
+            return 100 + Math.floor(Math.pow(candies.nbrEaten, 0.4)*2.1); // This function means ~ one day of candies eaten at 1cnd/s = +200 hp
+        }
     },
     
     getSpeed : function(){

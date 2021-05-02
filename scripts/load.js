@@ -14,9 +14,12 @@ function load() {
     document.getElementById('my_file').click();
 }
 
-function restart() {
+function restart(mode) {
     clearInterval(cookie.cookiehandler);
     cookie.eraseCookie("CandyCookie");
+    if (!(mode === "normal")) {
+        cookie.createGameModeCookie(mode);
+    }
     //location.reload();
     window.location.reload(true);
 }
@@ -33,7 +36,7 @@ function readFile (evt) {
         var var_list = []
 
         var lines = temp.split("\n");
-
+        
         if(lines.length != 92)
         {
             alert("ERROR: Corrupt Candysave Lines: " + lines.length);

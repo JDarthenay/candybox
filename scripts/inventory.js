@@ -47,12 +47,12 @@ var inventory = {
         if(developperComputer.won){
             htmlInteraction.setInnerHtml("inventory_won1", "<pre>" + this.asciiWon1 + "</pre>");
             htmlInteraction.setInnerHtml("inventory_won2", "<pre>" + this.asciiWon2 + "</pre>");
-            htmlInteraction.showButton("hardmode");
+            htmlInteraction.showButton("game_over_hint");
         }
         else{
             htmlInteraction.setInnerHtml("inventory_won1", "<pre>" + this.asciiNoObject + "</pre>");
             htmlInteraction.setInnerHtml("inventory_won2", "<pre>" + this.asciiNoObject + "</pre>");
-            htmlInteraction.hideButton("hardmode");
+            htmlInteraction.hideButton("game_over_hint");
         }
         
         // Maps
