@@ -33,6 +33,7 @@ gameModeSetting: normal
 ```
 
 ### 1.2 - 02/05/2021
+
 - Hard mode setting
   - New button to start game in hard mode
   - Saving game mode in cookie
