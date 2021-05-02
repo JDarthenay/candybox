@@ -117,7 +117,7 @@ function save() {
                     "gameModeSetting: " + gameMode.setting + "\n" +
                     "developperComputerWon: " + getPhpStuff(developperComputer.won);
 
-    var filename = "candybox_" + year.substring(2, 4) + month + day + "_" + hour + "-" + min;
+    var filename = "extendedcandybox_" + year.substring(2, 4) + month + day + "_" + hour + "-" + min;
     var blob = new Blob([save_text], {type: "text/plain;charset=utf-8"});
     saveAs(blob, filename+".cs");
 }
