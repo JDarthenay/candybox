@@ -39,3 +39,5 @@ gameModeSetting: normal
   - Saving game mode in cookie
   - Saving game mode in save files
   - Differences between hard mode and normal have been found by comparison of the two versions of the game
+    - In hard mode you never raise your maximum HPs
+    - In hard mode you get nothing when you pay the sorceress to upgrade you weapon beyond level 5

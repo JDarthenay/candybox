@@ -77,7 +77,7 @@ var developperComputer = {
     
     makeBug : function(){
         if (gameMode.setting === "hard mode") {
-          return land.createMob(random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]), 300 + random.getRandomIntUpTo(10000000), 300, random.pickRandomly(["sharp teeth", "cursed sword", "claws", "dagger", "fins", "hooves", "magic staff", "horn", "silver sword", "chocolate sword"]), "A bug !", [drops.createDrop("candies", 100000000)]);
+            return land.createMob(random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]), 300 + random.getRandomIntUpTo(10000000), 300, random.pickRandomly(["sharp teeth", "cursed sword", "claws", "dagger", "fins", "hooves", "magic staff", "horn", "silver sword", "chocolate sword"]), "A bug !", [drops.createDrop("candies", 100000000)]);
         } else {
             return land.createMob(random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]) + random.pickRandomly(["B", "U", "G"]), 300 + random.getRandomIntUpTo(10000000), 300, random.pickRandomly(["itself", "religion", "flames", "sharp teeth", "cursed sword", "claws", "dagger", "fins", "hooves", "magic staff", "horn", "silver sword", "chocolate sword", "demon claws"]), "A bug!", [drops.createDrop("candies", 100000000)]);
         }
