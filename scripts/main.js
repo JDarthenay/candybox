@@ -35,6 +35,7 @@ var main = {
         cauldron.onload();
         tabs.onload();
         darkMode.onload();
+        gameMode.onload();
 
         // Loading after various loads
         quest.onloadAfter(); // This must be call after other loads because it needs the different quests to be loaded

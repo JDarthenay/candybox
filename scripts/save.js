@@ -114,7 +114,7 @@ function save() {
                     "wishingWellStep: " + wishingWell.step + "\n" +
                     "yourselfCanSurpass: " + getPhpStuff(yourself.canSurpass) + "\n" +
                     "darkModeSetting: " + darkMode.setting + "\n" +
-                    "gameModeSetting: " + "normal" + "\n" +
+                    "gameModeSetting: " + gameMode.setting + "\n" +
                     "developperComputerWon: " + getPhpStuff(developperComputer.won);
 
     var filename = "candybox_" + year.substring(2, 4) + month + day + "_" + hour + "-" + min;

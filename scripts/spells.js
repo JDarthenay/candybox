@@ -46,20 +46,24 @@ var spells = {
     },
     
     betterSword : function(){
-        sword.setSpecialPower(sword.specialPower + 1);
-        this.sortListDependingOnPrice();
-        
-        // And we change the hut's speech by ourselves
-        switch(sword.name){
-            case "Sword of Life":
-                hut.setSpeech("Your Sword of Life will now drain more energy from your enemies.");
-            break;
-            case "Sword of Flames":
-                hut.setSpeech("Your Sword of Flames is now more powerful.")
-            break;
-            case "Sword of Summoning":
-                hut.setSpeech("You can now summon " + sword.summonList[sword.getIndexOfBetterToSummon()].name + "!");
-            break;
+        if(sword.specialPower < 5 || !(gameMode.setting === "hard mode")) {
+            sword.setSpecialPower(sword.specialPower + 1);
+            this.sortListDependingOnPrice();
+            
+            // And we change the hut's speech by ourselves
+            switch(sword.name){
+                case "Sword of Life":
+                    hut.setSpeech("Your Sword of Life will now drain more energy from your enemies.");
+                break;
+                case "Sword of Flames":
+                    hut.setSpeech("Your Sword of Flames is now more powerful.")
+                break;
+                case "Sword of Summoning":
+                    hut.setSpeech("You can now summon " + sword.summonList[sword.getIndexOfBetterToSummon()].name + "!");
+                break;
+            }
+        } else {
+            hut.setSpeech("A mysterious force stopped me. I didn't manage to enhance your sword.");
         }
     },
     

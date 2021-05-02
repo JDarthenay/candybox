@@ -31,3 +31,10 @@ If you need to use a save from previous version, you need to add the two followi
 darkModeSetting: light
 gameModeSetting: normal
 ```
+
+### 1.2 - 02/05/2021
+- Hard mode setting
+  - New button to start game in hard mode
+  - Saving game mode in cookie
+  - Saving game mode in save files
+  - Differences between hard mode and normal have been found by comparison of the two versions of the game

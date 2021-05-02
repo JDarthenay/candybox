@@ -93,6 +93,9 @@
         <!-- Additions for Dark Mode -->
         <script type="text/javascript" src="./scripts/darkMode.js"></script>
 
+        <!-- Additions for Hard Mode and eXtended mode -->
+        <script type="text/javascript" src="./scripts/gameMode.js"></script>
+
         <!-- The main js file which calls the other ones -->
         <script type="text/javascript" src="./scripts/main.js"></script>
 
@@ -162,8 +165,10 @@
             <div>
                 <button class="home_button" id="saveButton" onclick="save();" style="visibility:visible">Save</button><span id="save"></span>
                 <button class="home_button" id="loadButton" onclick="load();" style="visibility:visible">Load</button><span id="load"></span>
-                <button class="home_button" id="restartButton" onclick="restart();" style="visibility:visible">Restart Game</button><span id="restart"><br/><br/>
+                <button class="home_button" id="normalButton" onclick="restart('normal');" style="visibility:visible">New normal Game</button><span id="restart"/>
+                <button class="home_button" id="hardModeButton" onclick="restart('hard mode');" style="visibility:visible">New hard mode Game</button><br/><br/>
                 <input type="file" style="display:none" id="my_file" name="file" enctype="multipart/form-data" />
+                <span id="game_mode"></span><br/>
                 <span id="candies"></span><br/>
 <pre id="candies_converter" style="display:none">
   |
@@ -280,7 +285,7 @@
                 </tr>
             </table>
 
-            <span id="hardmode" style="visibility:hidden">If you want more challenge,<br/>you can play the hard mode <a href="https://web.archive.org/web/20170610192852/http://candies-hardmode.aniwey.net/">here!</a></span>
+            <span id="game_over_hint" style="visibility:hidden">Now you can try the other game settings.<br>There are two of them: normal / hard mode<br>eXtended mode will be released soon.</span>
             </div>
             <div style="overflow:auto">
 
