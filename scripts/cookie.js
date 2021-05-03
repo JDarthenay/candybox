@@ -13,7 +13,7 @@ var cookie = {
     },
 
     createGameModeCookie(mode) {
-        cookie.createCookie("CandyCookie", mode, 365);
+        cookie.createCookie("eXtCandyCookie", mode, 365);
     },
 
     readCookie : function(name) {
@@ -32,7 +32,7 @@ var cookie = {
     },
 
     autoSave : function() {
-        cookie.createCookie("CandyCookie", cookie.getData(), 365);
+        cookie.createCookie("eXtCandyCookie", cookie.getData(), 365);
     },
 
     getData : function() {
@@ -136,7 +136,7 @@ var cookie = {
 
         var var_list = []
 
-        var payload = cookie.readCookie("CandyCookie");
+        var payload = cookie.readCookie("eXtCandyCookie");
         var_list = payload.split(":");
 
         if(var_list.length == 1 && var_list[0] !== "") {
@@ -146,8 +146,8 @@ var cookie = {
 
         if(var_list.length != 92)
         {
-            alert("ERROR: Corrupt Candycookie Length:" + var_list.length);
-            console.log("ERROR: Corrupt Candycookie Length:" + var_list.length);
+            alert("ERROR: Corrupt eXtCandyCookie Length:" + var_list.length);
+            console.log("ERROR: Corrupt eXtCandyCookie Length:" + var_list.length);
             return null;
         }
 
