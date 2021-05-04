@@ -157,3 +157,8 @@ button.tooltip:hover span {
 .dark_table {
     border-color: #F1F1F1;
 }
+
+.extended_game_only {
+    visibility: hidden;
+    display: none;
+}
