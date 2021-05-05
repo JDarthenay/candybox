@@ -13,13 +13,24 @@ var mountGoblin = {
     },
     
     load : function(){
+        var addChest = false;
         for(var i = 1; i < quest.things.length; i++){
             if(random.flipACoin()){
                 // If we're not at the top of the mount
                 if(i < 12 || i > 15){
                     // 1 chance out of x we spawn a CHS (chest !!)
-                    if(random.oneChanceOutOf(this.basicChestProbability)){
-                        this.setBasicChestProbability(this.basicChestProbability + 50);
+                    if (gameMode.unlockHiddenFeatures) {
+                        addChest = random.oneChanceOutOf(35);
+                    } else if (gameMode.eXtended) {
+                        addChest = random.oneChanceOutOf(50);
+                    } else {
+                        addChest = random.oneChanceOutOf(this.basicChestProbability);
+                        if(addChest){
+                            this.setBasicChestProbability(this.basicChestProbability + 50);
+                        }
+                    }
+                    
+                    if (addChest) {
                         quest.things[i] = quest.makeBasicChest();
                     }
                     // 1 chance out of 7 we spaw a GSB
@@ -28,7 +39,7 @@ var mountGoblin = {
                     else quest.things[i] = land.createMob("GOB", 20, 20, "claws", "A nasty goblin.", [drops.createDrop("candies", 3 + random.getRandomIntUpTo(3))]);
                 }
                 else{
-                    quest.things[i] = land.createMob("GTB", 30, 30, "dagger", "A tenacious goblin. Oh, he has a dagger, too.", [drops.createDrop("candies", 9 + random.getRandomIntUpTo(9)), drops.createDrop("object", "key", random.oneChanceOutOf(2)), drops.createDrop("object", "boots", random.oneChanceOutOf(5)), drops.createDrop("object", "swampMap", random.oneChanceOutOf(5)), drops.createDrop("object", "hutMap", random.oneChanceOutOf(5))]);
+                    quest.things[i] = land.createMob("GTB", 30, 30, "dagger", "A tenacious goblin. Oh, he has a dagger, too.", [drops.createDrop("candies", 9 + random.getRandomIntUpTo(9) + ((gameMode.unlockHiddenFeatures && random.oneChanceOutOf(3)) ? 0 : (30 + random.getRandomIntUpTo(60)))), drops.createDrop("lollipops", 1 + random.getRandomIntUpTo(2), gameMode.unlockHiddenFeatures && random.oneChanceOutOf(10)), drops.createDrop("object", "key", random.oneChanceOutOf(2)), drops.createDrop("object", "boots", random.oneChanceOutOf(5)), drops.createDrop("object", "swampMap", random.oneChanceOutOf(5)), drops.createDrop("object", "hutMap", random.oneChanceOutOf(15))]);
                 }
             }
         }

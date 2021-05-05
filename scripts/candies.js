@@ -62,6 +62,7 @@ var candies = {
         else smiley = "...? <tt>(;_;)</tt>";
 
         darkMode.check();
+        gameMode.check();
         
         if(this.nbrThrown != 1) htmlInteraction.setInnerHtml("candies_thrown", "You threw " + this.nbrThrown + " candies on the ground" + smiley);
         else htmlInteraction.setInnerHtml("candies_thrown", "You threw 1 candy on the ground" + smiley);

@@ -8,8 +8,29 @@ var drops = {
         var text = "";
         
         // Candies found
-        if(quest.candiesFound != 1) text += "You found " + quest.candiesFound + " candies.";
-        else text += "You found 1 candy.";
+        if(quest.candiesFound == 0) {
+            if (quest.lollipopsFound == 0) {
+                text += "You found no candy yet.";
+            } else if (quest.lollipopsFound == 1) {
+                text += "You found 1 lollipop.";
+            } else {
+                text += "You found " + quest.lollipopsFound + " lollipops.";
+            }
+        } else {
+            if(quest.candiesFound != 1) {
+                text += "You found " + quest.candiesFound + " candies";
+            } else {
+                text += "You found 1 candy";
+            }
+            
+            if (quest.lollipopsFound == 0) {
+                text += ".";
+            } else if (quest.lollipopsFound == 1) {
+                text += " and 1 lollipop.";
+            } else {
+                text += " and " + quest.lollipopsFound + " lollipops.";
+            }
+        }
     
         // Objects found
         for(obj in objects.list){
@@ -28,6 +49,9 @@ var drops = {
         // Gain the candies
         candies.setNbrOwned(candies.nbrOwned + quest.candiesFound);
         
+        // Gain the lollipops
+        lollipops.setNbrOwned(lollipops.nbrOwned + quest.lollipopsFound);
+        
         // Gain the objects
         for(obj in objects.list){
             if(objects.list[obj].found){ // If we found this object but didn't have it already
@@ -41,6 +65,9 @@ var drops = {
             switch(list[i].type){
                 case "candies":
                     quest.setCandiesFound(quest.candiesFound + list[i].param1);
+                break;
+                case "lollipops":
+                    if(list[i].param2 == true) quest.setLollipopsFound(quest.lollipopsFound + list[i].param1);
                 break;
                 case "object":
                     if(list[i].param2 == true) this.foundObject(list[i].param1);

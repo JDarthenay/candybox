@@ -97,6 +97,9 @@ var buttons = {
 
         if(candies.nbrOwned >= 400) this.enableButton("buy_scroll");
         else htmlInteraction.disableButton("buy_scroll");
+        
+        if(candies.nbrOwned >= 5000) this.enableButton("buy_scroll_set");
+        else htmlInteraction.disableButton("buy_scroll_set");
     },
 
     checkEncrustSwordButton : function(){
@@ -268,6 +271,9 @@ var buttons = {
 
         // Check the cauldron visibility
         cauldron.checkVisibility();
+        
+        // Check the scroll set list
+        gameMode.updateScrollSetList();
     },
 
     checkLollipopsPlantingButtons : function(){

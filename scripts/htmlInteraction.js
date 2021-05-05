@@ -66,5 +66,13 @@ var htmlInteraction = {
 
     focusElement : function(id){
         this.getElement(id).focus();
+    },
+    
+    revealClass : function(id, bool){
+        var arr = document.getElementsByClassName(id);
+        for(var i = 0; i < arr.length; i++){
+            arr[i].style.visibility = bool ? "visible" : "hidden";
+            arr[i].style.display = bool ? "contents" : "none";
+        }
     }
 };

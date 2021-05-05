@@ -8,11 +8,11 @@
 
 <html>
     <head>
-        <title>Candy box!</title>
-        <meta name="title" content="Candy Box">
-        <meta name="keywords" content="Candy,Box,Candybox,Original,Legacy,1,Candybox 1,Candy Box 1,Candy Box,game,ascii,save">
-        <meta name="author" content="aniwey">
-        <meta name="description" content="Candy Box is a role-playing browser video game featuring ASCII art. It was developed by indie game developer aniwey.">
+        <title>eXtended Candy Box!</title>
+        <meta name="title" content="eXtended Candy Box">
+        <meta name="keywords" content="Candy,Box,Candybox,eXtended,Original,Legacy,1,Candybox 1,Candy Box 1,Candy Box,game,ascii,save">
+        <meta name="author" content="JDarthenay">
+        <meta name="description" content="eXtended Candy Box is a fork of Candy Box. Candy Box is a role-playing browser video game featuring ASCII art. It was developed by indie game developer aniwey.">
         <meta http-equiv="Cache-control" content="no-cache">
         <link rel="shortcut icon" href="./favicon.ico"/> <!-- Favicon by HacksawUnit \o/ Thanks to him! -->
 
@@ -165,8 +165,9 @@
             <div>
                 <button class="home_button" id="saveButton" onclick="save();" style="visibility:visible">Save</button><span id="save"></span>
                 <button class="home_button" id="loadButton" onclick="load();" style="visibility:visible">Load</button><span id="load"></span>
-                <button class="home_button" id="normalButton" onclick="restart('normal');" style="visibility:visible">New normal Game</button><span id="restart"/>
-                <button class="home_button" id="hardModeButton" onclick="restart('hard mode');" style="visibility:visible">New hard mode Game</button><br/><br/>
+                <button class="home_button" id="normalButton" onclick="restart('normal');" style="visibility:visible">New normal Game</button>
+                <button class="home_button" id="hardModeButton" onclick="restart('hard mode');" style="visibility:visible">New hard mode Game</button>
+                <button class="home_button" id="hardModeButton" onclick="restart('eXtended');" style="visibility:visible">New eXtended Game</button><br/><br/>
                 <input type="file" style="display:none" id="my_file" name="file" enctype="multipart/form-data" />
                 <span id="game_mode"></span><br/>
                 <span id="candies"></span><br/>
@@ -240,7 +241,8 @@
       |   c  |
       | n    |  <button class="home_button" id="buy_scroll" onclick="potions.buyScroll(400);">Buy a scroll (400 candies)</button>
      _|   d  |
-    (_/______/
+    (_/______/  <button class="home_button extended_game_only" id="buy_scroll_set" onclick="potions.buyScrollSet(5000, 10);">Buy a set of 10 scrolls (5000 candies)</button>
+                <span class="extended_game_only">Scroll type: <select id="scroll_set_type"></select></span>
 </pre>
 
                 </div>
@@ -285,7 +287,7 @@
                 </tr>
             </table>
 
-            <span id="game_over_hint" style="visibility:hidden">Now you can try the other game settings.<br>There are two of them: normal / hard mode<br>eXtended mode will be released soon.</span>
+            <span id="game_over_hint" style="visibility:hidden">Now you can try the other game settings.<br>There are three of them: normal / hard mode / eXtended</span>
             </div>
             <div style="overflow:auto">
 
@@ -324,7 +326,7 @@
 
                 <span id="quest_form">
                     <button class="home_button" id="quest_button" onclick="quest.begin(true);">Go for an epic quest!</button> <!-- "Go for an epic quest!" -->
-                    Destination : <select id="quest_destination"></select> <!-- Quest list -->
+                    Destination: <select id="quest_destination"></select> <!-- Quest list -->
                 </span>
 
 
@@ -402,7 +404,7 @@
             <br/><br/><br/>
             <a href="#" onclick='$("#faqs").toggle();'>F.A.Q.</a> -
             <a target="_blank" href="./credits.html">credits</a> -
-            <a target="_blank" href="https://github.com/candybox2/candybox">source code</a> -
+            <a target="_blank" href="https://github.com/JDarthenay/candybox">source code</a> -
             <b><a target="_blank" href="http://candybox2.github.io">Candy Box 2</a></b>
             <br/><br/>
             <div id="faqs" style="display:none;">

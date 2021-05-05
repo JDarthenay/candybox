@@ -16,7 +16,7 @@ function load() {
 
 function restart(mode) {
     clearInterval(cookie.cookiehandler);
-    cookie.eraseCookie("CandyCookie");
+    cookie.eraseCookie("eXtCandyCookie");
     if (!(mode === "normal")) {
         cookie.createGameModeCookie(mode);
     }
@@ -62,13 +62,13 @@ function readFile (evt) {
         }
 
         //reset all
-        cookie.eraseCookie("CandyCookie");
+        cookie.eraseCookie("eXtCandyCookie");
         main.onload();
 
 
 
         cookie.updateData(var_list);
-        cookie.createCookie("CandyCookie", cookie.getData(), 365);
+        cookie.createCookie("eXtCandyCookie", cookie.getData(), 365);
 
         window.location.reload(true);
 
