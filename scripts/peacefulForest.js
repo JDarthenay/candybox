@@ -1,23 +1,30 @@
 var peacefulForest = {
-    
+
     // Variables
     basicChestProbability : 100,
     poniesEncountered : 0,
-    
+
     // Functions
     onload : function(){
         land.addLand("The peaceful forest", 30, 0, this.load.bind(this), this.getText.bind(this), this.move.bind(this));
     },
-    
+
     setBasicChestProbability : function(value){
         this.basicChestProbability = value;
     },
-    
+
     move : function(){
+        // Set all ponies as "have to move"
+        for(var i = 0; i < quest.things.length; i++){
+            if(quest.things[i].text == "WPY"){
+                quest.things[i].moved = false;
+            }
+        }
         // Iterate over all things
         for(var i = 0; i < quest.things.length; i++){
             // If it's a wood poney (wood poneeeey \o/)
-            if(quest.things[i].text == "WPY"){
+            if(quest.things[i].text == "WPY" && !quest.things[i].moved){
+                quest.things[i].moved = true;
                 // We make it move if possible
                 if(random.flipACoin()){
                     // If we can move it to the right
@@ -38,13 +45,13 @@ var peacefulForest = {
             }
         }
     },
-    
+
     load : function(){
         var addedAPoney = false; // Will be true if we added a pony. Useful to avoid adding two ponies in the same quest
         var addedPonies = 0;
         var addPony = false;
         var addChest = false;
-        
+
         for(var i = 1; i < quest.things.length; i++){
             if(random.flipACoin()){
                 // 1 chance out of x we spawn a wood poney !!!! (if we didn't already add one)
@@ -53,7 +60,7 @@ var peacefulForest = {
                 } else {
                     addPony = addedAPoney == false && random.oneChanceOutOf(300);
                 }
-                
+
                 if(addPony){
                     addedAPoney = true;
                     addedPonies += 1;
@@ -80,28 +87,28 @@ var peacefulForest = {
                 }
             }
         }
-        
+
         if(addedAPoney){
             this.setPoniesEncountered(this.poniesEncountered + addedPonies);
         }
     },
-    
+
     setPoniesEncountered : function(value){
         this.poniesEncountered = value;
     },
-    
+
     getText : function(){
         var text = "";
-        
+
         for(var i = 0; i < quest.things.length; i++){
             text += quest.things[i].text;
         }
-        
+
         return text;
     },
-    
+
     makeWoodPoney : function(){
         return land.createMob("WPY", 12, 12, "hooves", "A wood pony! It's a pony! It the woods!", [drops.createDrop("candies", 42), drops.createDrop("lollipops", 1 + random.getRandomIntUpTo(2), gameMode.unlockHiddenFeatures)]);
     }
-    
+
 };
