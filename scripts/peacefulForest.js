@@ -21,7 +21,7 @@ var peacefulForest = {
                 // We make it move if possible
                 if(random.flipACoin()){
                     // If we can move it to the right
-                    if(quest.things[i+1].type == "none"){
+                    if(i < (quest.things.length - 1) && quest.things[i+1].type == "none"){
                         // We move it to the right
                         quest.things[i+1] = quest.things[i];
                         quest.things[i] = quest.makeNoneThing();
@@ -29,7 +29,7 @@ var peacefulForest = {
                 }
                 else{
                     // If we can move it to the left
-                    if(quest.things[i-1].type == "none"){
+                    if(i > 0 && quest.things[i-1].type == "none"){
                         // We move it to the left
                         quest.things[i-1] = quest.things[i];
                         quest.things[i] = quest.makeNoneThing();
