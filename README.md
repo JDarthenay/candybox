@@ -60,5 +60,5 @@ gameModeSetting: normal
   - Peaceful Forest: wood ponies pop up more often and up to two ponies can be encountered in a single run
   - Peaceful Forest: wood ponies and trees drop a few lollipops
   - Peaceful Forest: chests pop up more often
-  - Goblin Mount: tenacious goblin may drop more candies and may drop lollipops
+  - Goblin Mount: tenacious goblins may drop more candies and may drop lollipops
   - Goblin Mount: chests pop up more often
