@@ -1,7 +1,7 @@
 var castleKeep = {
 
     // Variables
-    
+
     size : 30, // The size here must be higher than the size of the biggest room
     realSize : 0, // This is the real size of the current room, in term of things
     roomSize : 0, // Real size of the room in term of ascii
@@ -14,16 +14,16 @@ var castleKeep = {
     maxRoom : 6,
 
     // Functions
-    
+
     onload : function(){
         land.addLand("Castle's keep", this.size, 5, this.load.bind(this), this.getText.bind(this), this.move.bind(this));
     },
-    
+
     move : function(){
         // We get the character's index
         var index = quest.getCharacterIndex();
         var characterThing = quest.things[index];
-        
+
         // If the mobs should move, we make them move
         if(this.mobsAreMoving){
             for(var i = 0; i < quest.things.length; i++){
@@ -33,7 +33,7 @@ var castleKeep = {
                 }
             }
         }
-        
+
         // If the character is just after the exit of the room, we create a new room and put him in it
         if(index == this.lastCharacterPosition - this.firstCharacterPosition + 1){
             this.roomNumber += 1; // We increment the room number
@@ -49,7 +49,7 @@ var castleKeep = {
                 quest.things[index] = quest.makeFakeCharacter();
             }
         }
-        
+
         // If we just killed the dragon
         if(this.roomNumber == 6 && index == 16 && quest.things[17].type == "none"){
             // We reload the room without the dragon
@@ -58,16 +58,16 @@ var castleKeep = {
             this.createDoorHere(this.firstCharacterPosition);
         }
     },
-    
+
     load : function(){
         this.roomNumber = 0; // We reset the room number
         this.createNewRoom();
     },
-    
+
     getText : function(){
         var lines = [];
         lines = this.text.slice(0); // It will store the lines of the castle keep
-        
+
         // We add things
         for(var i = 0; i < this.realSize; i++){
             if(quest.things[i].type != "none"){
@@ -78,7 +78,7 @@ var castleKeep = {
         // We return the lines around the player
         return lines.join("");
     },
-    
+
     createRoomStructure : function(){
         var line;
 
@@ -106,24 +106,24 @@ var castleKeep = {
         line += "|\n";
         this.text.push(line);
     },
-    
+
     addDragonInRoom : function(){
         var line = "";
-        
+
         // Add a line (to store the tail of the dragon)
         for(var i = 0; i < this.roomSize; i++){
             line += "   ";
         }
         this.text.push(line);
-        
+
         for(var i = 0; i < this.asciiDragon.length; i++){
             this.text[i + 1] = this.text[i + 1].replaceAt(54, this.asciiDragon[i]);
         }
     },
-    
+
     createNewRoom : function(){
         this.text = [];
-        
+
         // If we're not yet at the boss room, we make a random-sized room
         if(this.roomNumber < this.maxRoom){
             // Set the size and stuff
@@ -132,9 +132,9 @@ var castleKeep = {
             this.lastCharacterPosition = this.firstCharacterPosition + this.realSize - 1;
             this.floorPosition = 5 + random.getRandomIntUpTo(6);
             this.roomSize = this.realSize + this.firstCharacterPosition + random.getRandomIntUpTo(2);
-            
+
             this.createRoomStructure();
-                
+
             // We add the doors at the character's first and last position
             this.createDoorHere(this.firstCharacterPosition);
             this.createDoorHere(this.lastCharacterPosition);
@@ -147,17 +147,17 @@ var castleKeep = {
             this.lastCharacterPosition = 21;
             this.floorPosition = 16;
             this.roomSize = this.realSize + this.firstCharacterPosition + 1;
-            
+
             this.createRoomStructure();
             this.addDragonInRoom();
-                
+
             // We add the doors at the character's first and last position
             this.createDoorHere(this.firstCharacterPosition);
         }
-        
+
         // By default, mobs are not moving
         this.mobsAreMoving = false;
-        
+
         // We add roomNumber specific stuff
         switch(this.roomNumber){
             // Room 0 : we put some guards
@@ -232,9 +232,24 @@ var castleKeep = {
                     break;
                     // Unicorn room
                     case 6:
-                        quest.things[2 + random.getRandomIntUpTo(this.realSize - 4)] = this.makeCharlieTheUnicorn();
-                        quest.things[2 + random.getRandomIntUpTo(this.realSize - 4)] = this.makeUnicorn();
-                        quest.things[2 + random.getRandomIntUpTo(this.realSize - 4)] = this.makeUnicorn();
+                        var posCharlie = 2 + random.getRandomIntUpTo(this.realSize - 4);
+                        var posUnicorn1 = 2 + random.getRandomIntUpTo(this.realSize - 5);
+                        var posUnicorn2 = 2 + random.getRandomIntUpTo(this.realSize - 6);
+
+                        if (posUnicorn1 >= posCharlie) {
+                            posUnicorn1++;
+                        }
+
+                        if (posUnicorn2 >= posCharlie || posUnicorn2 >= posUnicorn1) {
+                            posUnicorn2++;
+                            if (posUnicorn2 >= posCharlie && posUnicorn2 >= posUnicorn1) {
+                                posUnicorn2++;
+                            }
+                        }
+
+                        quest.things[posCharlie] = this.makeCharlieTheUnicorn();
+                        quest.things[posUnicorn1] = this.makeUnicorn();
+                        quest.things[posUnicorn2] = this.makeUnicorn();
                         this.mobsAreMoving = true;
                     break;
                     // Troll room
@@ -259,74 +274,74 @@ var castleKeep = {
             break;
         }
     },
-    
+
     createDoorHere : function(position){
         this.text[this.floorPosition-2] = this.text[this.floorPosition-2].replaceAt(1 + position*3, " _ ");
         this.text[this.floorPosition-1] = this.text[this.floorPosition-1].replaceAt(1 + position*3, "|.|");
         this.text[this.floorPosition] = this.text[this.floorPosition].replaceAt(1 + position*3, "| |");
     },
-    
+
     makeKomodoDragon : function(){
         return land.createMob("KOM", 5, 5, "foots and tail", "A Komodo dragon. Did you heard about island gigantism?", []);
     },
-                                    
+
     makeRhinoceros : function(){
         return land.createMob("RHI", 160, 160, "horn", "A " + random.pickRandomly(["white", "black", "indian", "javan", "sumatran"]) + " rhinoceros. Watch out for his horn!", []);
     },
-    
+
     makeGaur : function(){
         return land.createMob("GAU", 80, 80, "horns", "A Gaur. This large bovine looks like a bison.", []);
     },
-    
+
     makeDromornisStirtoni : function(){
         return land.createMob("DST", 70, 70, "giant beak", "A Dromornis Stirtoni! A 400kg flightless bird!", []);
     },
-    
+
     makeGorilla : function(){
         return land.createMob("GOR", 50, 50, "its fists", "A Gorilla. Gorillas occasionally engage in homosexual interactions.", []);
     },
-    
+
     makeCapybara : function(){
         return land.createMob("CPY", 20, 20, "its teeth", "A capybara: the largest rodent in the world!", []);
     },
-    
+
     makeDoedicurus : function(){
         return land.createMob("DOE", 120, 120, "spiky tail", "A Doedicurus: your favorite glyptodont!", []);
     },
-    
+
     makeStoneWall : function(){
         return land.createMob("WAL", 300, 300, "stone", "A stone wall.", []);
     },
-    
+
     makeWalledOffZombieWarrior : function(){
         var hp = 150 + random.getRandomIntUpTo(10) * 10;
         return land.createMob("WZW", hp, hp, "cursed sword", "A walled off zombie warrior. He probably did something bad to end up here.", [drops.createDrop("candies", random.getRandomIntUpTo(1) * 4000), drops.createDrop("object", "oldAmulet", true)]);
     },
-    
+
     makeFireball : function(){
         return land.createMob("FBL", 1, 1, "itself", "A fireball!! Watch out!", []);
     },
-    
+
     makeFakeDoorMonster : function(){
         return land.createMob("| |", 70, 70, "sharp teeth", "It's not a door! It's a monster! (an ugly one)", []);
     },
-    
+
     makeUnicorn : function(){
         return land.createMob("UNI", 100, 100, "magical horn", "A unicorn!! They exist!", []);
     },
-    
+
     makeCharlieTheUnicorn : function(){
         return land.createMob("UNI", 100, 100, "magical horn", "A unicorn!! It has no kidney.", [drops.createDrop("object", "magicalHorn", true)]);
     },
-    
+
     makeTroll : function(){
         return land.createMob("TRL", 250, 250, "enormous fist", "A troll. It is huge, but it lacks precision.", []);
     },
-    
+
     makeDragon : function(){
         return land.createMob(",((", 1000, 1000, "flames", "A dragon!! Kill him and the castle will be yours.", []);
     },
-    
+
     asciiDragon :
 [
 "    _///_,",
