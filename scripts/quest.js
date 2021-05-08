@@ -5,6 +5,8 @@ var quest = {
     maxLandOrder : -1, // Max land order we achieved for the moment
     candiesFound : 0, // Number of candies found during a quest
     lollipopsFound : 0, // Number of lollipops found during a quest
+    healthPotionsFound : 0, // Number of health potions found during a quest
+    berserkPotionsFound : 0, // Number of berserk potions found during a quest
     speed : 0, // Speed of the character during a quest
     things : [], // Array containing all the things present in a quest
     tiredTime : 0, // Number of seconds we need to spend before doing another quest
@@ -399,6 +401,8 @@ var quest = {
         // Nothing found anymore
         this.setCandiesFound(0);
         this.setLollipopsFound(0);
+        this.setHealthPotionsFound(0);
+        this.setBerserkPotionsFound(0);
         this.setTiredFound(0);
         for(obj in objects.list) objects.list[obj].found = false;
     },
@@ -415,6 +419,14 @@ var quest = {
     
     setLollipopsFound : function(value){
         this.lollipopsFound = value;
+    },
+    
+    setHealthPotionsFound : function(value){
+        this.healthPotionsFound = value;
+    },
+    
+    setBerserkPotionsFound : function(value){
+        this.berserkPotionsFound = value;
     },
     
     setTiredTime : function(value){

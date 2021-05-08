@@ -31,6 +31,13 @@ var drops = {
                 text += " and " + quest.lollipopsFound + " lollipops.";
             }
         }
+        
+        // Potions found
+        if (quest.healthPotionsFound + quest.berserkPotionsFound == 1) {
+            text += "\nYou found 1 potion.";
+        } else if (quest.healthPotionsFound > 0 || quest.berserkPotionsFound > 0) {
+            text += "\nYou found " + (quest.healthPotionsFound + quest.berserkPotionsFound) + " potions.";
+        }
     
         // Objects found
         for(obj in objects.list){
@@ -52,6 +59,14 @@ var drops = {
         // Gain the lollipops
         lollipops.setNbrOwned(lollipops.nbrOwned + quest.lollipopsFound);
         
+        // Gain the potions
+        if (quest.healthPotionsFound > 0) {
+            potions.getPotions(potions.list.health, quest.healthPotionsFound);
+        }
+        if (quest.berserkPotionsFound > 0) {
+            potions.getPotions(potions.list.berserk, quest.healhPotionsFound);
+        }
+        
         // Gain the objects
         for(obj in objects.list){
             if(objects.list[obj].found){ // If we found this object but didn't have it already
@@ -68,6 +83,12 @@ var drops = {
                 break;
                 case "lollipops":
                     if(list[i].param2 == true) quest.setLollipopsFound(quest.lollipopsFound + list[i].param1);
+                break;
+                case "health potions":
+                    if(list[i].param2 == true) quest.setHealthPotionsFound(quest.healthPotionsFound + list[i].param1);
+                break;
+                case "berserk potions":
+                    if(list[i].param2 == true) quest.setBerserkPotionsFound(quest.berserkPotionsFound + list[i].param1);
                 break;
                 case "object":
                     if(list[i].param2 == true) this.foundObject(list[i].param1);
