@@ -169,7 +169,7 @@ var castleKeep = {
             break;
             // Rooms 1 to 4 : we put some random ennemies
             case 1: case 2: case 3: case 4:
-                switch(random.getRandomIntUpTo(7)){
+                    switch(random.getRandomIntUpTo(7)){
                     // Knights room
                     case 0:
                         for(var i = 2; i < this.realSize - 1; i++){
@@ -335,7 +335,7 @@ var castleKeep = {
     },
 
     makeTroll : function(){
-        return land.createMob("TRL", 250, 250, "enormous fist", "A troll. It is huge, but it lacks precision.", []);
+        return land.createMob("TRL", 250, 250, "enormous fist", "A troll. It is huge, but it lacks precision.", [drops.createDrop("berserk potions", 1, gameMode.unlockHiddenFeatures && !random.oneChanceOutOf(3))]);
     },
 
     makeDragon : function(){

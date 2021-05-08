@@ -64,7 +64,7 @@ var drops = {
             potions.getPotions(potions.list.health, quest.healthPotionsFound);
         }
         if (quest.berserkPotionsFound > 0) {
-            potions.getPotions(potions.list.berserk, quest.healhPotionsFound);
+            potions.getPotions(potions.list.berserk, quest.berserkPotionsFound);
         }
         
         // Gain the objects
