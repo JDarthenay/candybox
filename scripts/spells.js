@@ -70,8 +70,13 @@ var spells = {
     moreCandies : function(){
         var nbr = Math.floor(candies.nbrTotal/20);
         
-        // We can't gain more candies than the price we pay for the spell !
-        if(nbr > 300000) nbr = 300000;
+        if (gameMode.setting == "eXtended") {
+            // We can't gain more than 10% by converting lollipops to candies
+            if(nbr > 330000) nbr = 330000;
+        } else {
+            // We can't gain more candies than the price we pay for the spell !
+            if(nbr > 300000) nbr = 300000;
+        }
         
         candies.setNbrOwned(candies.nbrOwned + nbr);
         hut.setSpeech("Here's " + nbr + " candies for you!");

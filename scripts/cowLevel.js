@@ -79,7 +79,7 @@ var cowLevel = {
     },
     
     makeCowKing : function(){
-        return land.createMob("COW", 180, 180, "horns", "The cow king! It looks like a normal cow, but it isn't...", [drops.createDrop("candies", 1000), drops.createDrop("object", "hornOfPlenty", true)]);
+        return land.createMob("COW", 180, 180, "horns", "The cow king! It looks like a normal cow, but it isn't...", [drops.createDrop("candies", 1000), drops.createDrop("berserk potions", 1, gameMode.unlockHiddenFeatures && !random.oneChanceOutOf(3)), drops.createDrop("object", "hornOfPlenty", true)]);
     }
     
 };

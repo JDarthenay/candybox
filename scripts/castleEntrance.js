@@ -97,7 +97,7 @@ var castleEntrance = {
     },
     
     makeKnight : function(){
-        return land.createMob("KNI", 70, 70, "sharp sword", "A knight with a huge armor.", [drops.createDrop("candies", 230 + random.getRandomIntUpTo(70)), drops.createDrop("object", "plateArmour", random.oneChanceOutOf(10))]);
+        return land.createMob("KNI", 70, 70, "sharp sword", "A knight with a huge armor.", [drops.createDrop("candies", 230 + random.getRandomIntUpTo(70)), drops.createDrop("health potions", 1 + random.getRandomIntUpTo(1), gameMode.unlockHiddenFeatures && random.oneChanceOutOf(7)), drops.createDrop("object", "plateArmour", random.oneChanceOutOf(10))]);
     },
     
     getText : function(){

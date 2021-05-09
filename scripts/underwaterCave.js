@@ -58,7 +58,7 @@ var underwaterCave = {
                     quest.things[i] = land.createMob("OCT", 45, 45, "tentacles", "An octopus guardian. It looks dangerous.", []);
             }
             else if(i == 51){ // It's the whale (52 and 53 must be void)
-                quest.things[i] = land.createMob("The Whale.", 100, 100, "giant tail", "The Whale does not like to be disturbed.", [drops.createDrop("candies", 400 + random.getRandomIntUpTo(400)), drops.createDrop("object", "key", true), drops.createDrop("object", "hutMap", true), drops.createDrop("object", "swampMap", true), drops.createDrop("object", "boots", true), drops.createDrop("object", "wellMap", true), drops.createDrop("object", "magicianHat", true), drops.createDrop("object", "pinkRing", true), drops.createDrop("object", "forgeMap", true)]);
+                quest.things[i] = land.createMob("The Whale.", 100, 100, "giant tail", "The Whale does not like to be disturbed.", [drops.createDrop("candies", 400 + random.getRandomIntUpTo(400)), drops.createDrop("health potions", 1, gameMode.unlockHiddenFeatures && random.oneChanceOutOf(3)), drops.createDrop("object", "key", true), drops.createDrop("object", "hutMap", true), drops.createDrop("object", "swampMap", true), drops.createDrop("object", "boots", true), drops.createDrop("object", "wellMap", true), drops.createDrop("object", "magicianHat", true), drops.createDrop("object", "pinkRing", true), drops.createDrop("object", "forgeMap", true)]);
             }
         }
     },
