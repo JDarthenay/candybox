@@ -52,7 +52,7 @@ gameModeSetting: normal
   - new game title
   - new game cookie name
 - eXtended mode
-  - throwing 100 candies to the ground unlock hidden features
+  - throwing 100 candies to the ground unlocks hidden features
   - Peaceful Forest: chest appearance probability does not decrease
   - Goblin Mount: chest appearance probability does not decrease
   - A set of ten identical scrolls can now be bought to the merchant
@@ -62,3 +62,12 @@ gameModeSetting: normal
   - Peaceful Forest: chests pop up more often
   - Goblin Mount: tenacious goblins may drop more candies and may drop lollipops
   - Goblin Mount: chests pop up more often
+
+### 2.1 - 09/05/2021
+- Minor glitches
+  - While generating unicorns, one cannot overwrite another anymore
+- eXtended mode
+  - the "more candies spell" can now produce up to 330,000 candies
+- eXtended mode hidden features
+  - Non sick goblins, the whale and knights can drop health potions.
+  - Trolls and the cow king can drop berserk potions.
